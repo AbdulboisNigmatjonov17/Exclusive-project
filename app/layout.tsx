@@ -33,7 +33,7 @@ export default function RootLayout({
         <TopAds />
         <Navbar />
         <hr className="h-[0.5px] text-[#000000] opacity-30" />
-        <main className="min-h-[40vh]">
+        <main className="min-h-[40vh] Container">
           {children}
         </main>
         <Footer />
