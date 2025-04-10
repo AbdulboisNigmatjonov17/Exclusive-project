@@ -8,7 +8,7 @@ export default function Hero() {
 
     return (
         <section className="flex justify-between mb-20">
-            <ul className='w-[217px] border-r-[0.5px] pr-4 pt-10'>
+            <ul className='w-[217px] border-r-[0.5px] border-[rgba(0,_0,_0,_0.2)] pr-4 pt-10'>
                 {
                     ["Woman’s Fashion", "Men’s Fashion", "Electronics", "Home & Lifestyle", "Medicine", "Sports & Outdoor", "Baby’s & Toys", "Groceries & Pets", "Health & Beauty",].map((item, index) => (
                         <li key={index} className='mb-4 font-medium text-[16px] leading-6'>{item}</li>
