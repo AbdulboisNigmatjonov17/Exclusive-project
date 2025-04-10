@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import Flicking from "@egjs/react-flicking";
 import "@egjs/flicking/dist/flicking.css";
 import { CardsData } from '@/helpers/CardsData';
 import Card from './Card';
 import Title from '../title/Title';
 import { ArrowForward, ArrowBack } from '@mui/icons-material';
 import Button from '../btn/Button';
+import Flicking from "@egjs/react-flicking";
 
 export default function FlashSales() {
     const flickingRef = useRef<any>(null);

@@ -11,8 +11,8 @@ import Button from '../btn/Button';
 export default function Explore() {
     const [firstRowCards, setFirstRowCards] = useState<typeof CardsData>([]);
     const [secondRowCards, setSecondRowCards] = useState<typeof CardsData>([]);
-    const flickingRef = useRef<any>(null);
     const [isAnimating, setIsAnimating] = useState(false);
+    const flickingRef = useRef<any>(null);
 
     useEffect(() => {
         const shuffled = [...CardsData].sort(() => 0.5 - Math.random());
