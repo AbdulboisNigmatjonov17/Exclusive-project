@@ -6,7 +6,7 @@ import Flicking from "@egjs/react-flicking";
 import "@egjs/flicking/dist/flicking.css";
 
 export default function CategoryCards() {
-    const flickingRef = useRef<any>(null);
+    const flickingRef = useRef<Flicking | null>(null);
 
     const handleNext = () => {
         const flicking = flickingRef.current;

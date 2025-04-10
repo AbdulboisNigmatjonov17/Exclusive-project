@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import "@egjs/flicking/dist/flicking.css";
 import { CardsData } from '@/helpers/CardsData';
 import Card from './Card';
@@ -10,7 +10,7 @@ import Button from '../btn/Button';
 import Flicking from "@egjs/react-flicking";
 
 export default function FlashSales() {
-    const flickingRef = useRef<any>(null);
+    const flickingRef = useRef<Flicking | null>(null);
     const [currentProducts, setCurrentProducts] = useState<typeof CardsData[0][]>([]);
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
@@ -19,13 +19,18 @@ export default function FlashSales() {
         seconds: 0
     });
 
-    useEffect(() => {
-        initializeFlashSale();
-        const interval = setInterval(updateCountdown, 1000);
-        return () => clearInterval(interval);
+    const createNewFlashSale = useCallback(() => {
+        const shuffled = [...CardsData].sort(() => 0.5 - Math.random());
+        const selectedProducts = shuffled.slice(0, 5);
+        const now = new Date();
+        const endDate = new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000);
+
+        localStorage.setItem('flashSaleEnd', endDate.toString());
+        localStorage.setItem('flashSaleProducts', JSON.stringify(selectedProducts));
+        setCurrentProducts(selectedProducts);
     }, []);
 
-    const initializeFlashSale = () => {
+    const initializeFlashSale = useCallback(() => {
         const storedEndDate = localStorage.getItem('flashSaleEnd');
         const storedProducts = localStorage.getItem('flashSaleProducts');
 
@@ -40,20 +45,9 @@ export default function FlashSales() {
         }
 
         createNewFlashSale();
-    };
+    }, [createNewFlashSale]);
 
-    const createNewFlashSale = () => {
-        const shuffled = [...CardsData].sort(() => 0.5 - Math.random());
-        const selectedProducts = shuffled.slice(0, 5);
-        const now = new Date();
-        const endDate = new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000);
-
-        localStorage.setItem('flashSaleEnd', endDate.toString());
-        localStorage.setItem('flashSaleProducts', JSON.stringify(selectedProducts));
-        setCurrentProducts(selectedProducts);
-    };
-
-    const updateCountdown = () => {
+    const updateCountdown = useCallback(() => {
         const endDateStr = localStorage.getItem('flashSaleEnd');
         if (!endDateStr) return;
 
@@ -72,8 +66,13 @@ export default function FlashSales() {
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
         setTimeLeft({ days, hours, minutes, seconds });
-    };
+    }, [createNewFlashSale]);
 
+    useEffect(() => {
+        initializeFlashSale();
+        const interval = setInterval(updateCountdown, 1000);
+        return () => clearInterval(interval);
+    }, [initializeFlashSale, updateCountdown]);
     const handleNext = () => {
         const flicking = flickingRef.current;
         if (!flicking) return;
