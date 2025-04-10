@@ -1,17 +1,20 @@
 "use client"
-import Card from '@/components/cards/Card'
+import Banner from '@/components/banner/Banner'
+import BestSelling from '@/components/cards/BestSelling'
+import CategoryCards from '@/components/cards/CategoryCards'
+import FlashSales from '@/components/cards/FlashSale'
 import Hero from '@/components/hero/Hero'
-import { CardsData } from '@/helpers/CardsData'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-        {CardsData.map((card) => (
-          <Card key={card.id} card={card} />
-        ))}
-      </div>
+      <FlashSales />
+      <hr className='opacity-30 my-20' />
+      <CategoryCards />
+      <hr className='opacity-30 my-20' />
+      <BestSelling />
+      <Banner />
     </>
   )
 }
