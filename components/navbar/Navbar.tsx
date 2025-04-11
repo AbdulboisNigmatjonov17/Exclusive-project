@@ -11,22 +11,22 @@ export default function Navbar() {
           <Image width={120} height={25} src="/Logo.svg" alt="Exclusive Logo" className='w-auto h-auto' />
         </Link>
         <ul className='flex gap-[48px]'>
-          <li>
+          <li className='hover:font-medium'>
             <Link href={'/'}>
               Home
             </Link>
           </li>
-          <li>
+          <li className='hover:font-medium'>
             <Link href={'/contact'}>
               Contact
             </Link>
           </li>
-          <li>
+          <li className='hover:font-medium'>
             <Link href={'/about'}>
               About
             </Link>
           </li>
-          <li>
+          <li className='hover:font-medium'>
             <Link href={'/register'}>
               Sign Up
             </Link>

@@ -1,12 +1,13 @@
 "use client"
 import Banner from '@/components/banner/Banner'
-import BannerBottom from '@/components/banner/BannerBottom'
+import Boxes from '@/components/banner/Boxes'
 import BestSelling from '@/components/cards/BestSelling'
 import CategoryCards from '@/components/cards/CategoryCards'
 import Explore from '@/components/cards/Explore'
 import FlashSales from '@/components/cards/FlashSale'
 import NewArrivel from '@/components/cards/NewArrivel'
 import Hero from '@/components/hero/Hero'
+import { BannerBottom } from '@/helpers/BannerBottom'
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
       <Banner />
       <Explore />
       <NewArrivel />
-      <BannerBottom />
+      <Boxes data={BannerBottom} />
     </>
   )
 }
