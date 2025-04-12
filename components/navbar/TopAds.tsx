@@ -1,3 +1,4 @@
+"use client"
 import { ExpandMore } from '@mui/icons-material';
 import React from 'react';
 
