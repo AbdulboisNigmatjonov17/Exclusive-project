@@ -21,6 +21,7 @@ export default function Home() {
       <Banner />
       <Explore />
       <NewArrivel />
+      lolo
       <Boxes data={BannerBottom} />
     </>
   )
