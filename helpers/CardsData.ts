@@ -8,7 +8,7 @@ export const CardsData = [
             disc_percent: 0,
         },
         images: {
-            main: "",
+            main: "/mubinlolo",
             one: "",
             two: "",
             thre: "",
