@@ -2,7 +2,7 @@
 import RelatedItem from '@/components/cards/RelatedItem';
 import Details from '@/components/detail/Details';
 import Images from '@/components/detail/Images';
-import { CardsData } from '@/helpers/CardsData';
+// import { CardsData } from '@/helpers/CardsData';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
