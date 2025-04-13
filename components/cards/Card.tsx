@@ -3,6 +3,7 @@
 import { FavoriteBorder, VisibilityOutlined } from "@mui/icons-material";
 import StarRating from "../star/Star";
 import { useState } from "react";
+import Link from "next/link";
 
 interface CardProps {
     id: number;
@@ -30,8 +31,8 @@ export default function Card({ card }: { card: CardProps }) {
 
     return (
         <div key={card.id} className="w-[270px] h-[350px]">
-            <div
-                className="h-[250px] bg-contain bg-center p-3 rounded-sm flex items-start justify-between relative"
+            <Link href={`/detail/${card.id}`}
+                className={`h-[250px] bg-center p-3 rounded-sm flex items-start justify-between relative bg-no-repeat bg-[rgba(245,_245,_245,_1)] transition delay-150 duration-300 ease-in-out ${card.id === 1 ? "bg-contain hover:bg-size-[auto_300px]" : "hover:bg-size-[auto_200px] "}`}
                 style={{
                     backgroundImage: `url(${card.images.main ? card.images.main : "/default-product-img.jpg"})`
                 }}
@@ -52,18 +53,27 @@ export default function Card({ card }: { card: CardProps }) {
                     </div>
                 </div>
                 <button
-                    onClick={()=> alert(`${card.id} number of button has clicked`)}
+                    onClick={() => alert(`${card.id} number of button has clicked`)}
                     className={`cursor-pointer absolute bottom-0 left-0 w-full flex justify-center py-2 bg-black text-white rounded-sm transition duration-300 ease-in-out ${show ? "opacity-100" : "opacity-0"
                         }`}
                 >
                     Add to Cart
                 </button>
-            </div>
+            </Link>
             <div className="mt-4">
                 <h3 className="font-medium">{card.title}</h3>
-                <span className="text-red-400 font-medium">
-                    ${card.price.main}
-                </span>
+                {card.price.disc ?
+                    <div className="flex gap-3">
+                        <span className="text-red-400 font-medium">
+                            ${Math.round(card.price.main * (1 - card.price.disc_percent / 100))}
+                        </span>
+                        <s className="text-gray-400 font-medium">${card.price.main}</s>
+                    </div>
+                    :
+                    <span className="text-red-400 font-medium">
+                        ${card.price.main}
+                    </span>
+                }
                 <StarRating />
             </div>
         </div>

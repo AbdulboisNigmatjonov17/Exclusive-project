@@ -1,22 +1,24 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function Register() {
     return (
         <form className='max-w-[370px] w-full max-h-full flex items-center'>
-            <div className='w-full h-[530px] flex flex-col gap-4'>
-                <h1 class>Create an account</h1>
-                <p>Enter your details below</p>
-                <div className='flex flex-col'>
-                    <input type="text" name='name' placeholder='Name' />
+            <div className='w-full h-[530px] flex flex-col gap-10'>
+                <div className='flex flex-col gap-6'>
+                    <h1 className='text-4xl font-medium leading-7 tracking-[4%]'>Create an account</h1>
+                    <h4 className='font-normal text-[16px] leading-6'>Enter your details below</h4>
                 </div>
-                <div className='flex flex-col'>
-                    <input type="email" name='email' placeholder='Email adress' />
+                <div className='flex flex-col gap-10'>
+                    <input type="text" name='name' required placeholder='Name' className='h-8 outline-none border-b-[2px] border-[rgba(0,_0,_0,_0.3)] focus:border-[rgba(0,_0,_0,_1)]' />
+                    <input type="email" name='email' required placeholder='Email adress' className='h-8 outline-none border-b-[2px] border-[rgba(0,_0,_0,_0.3)] focus:border-[rgba(0,_0,_0,_1)]' />
+                    <input type="password" name='password' required placeholder='Password' className='h-8 outline-none border-b-[2px] border-[rgba(0,_0,_0,_0.3)] focus:border-[rgba(0,_0,_0,_1)]' />
                 </div>
-                <div className='flex flex-col'>
-                    <input type="password" name='password' placeholder='Password' />
+                <div className='flex flex-col gap-4'>
+                    <button type='submit' className='w-full h-[55px] rounded-sm flex justify-center items-center bg-[#DB4444] text-white cursor-pointer hover:bg-[#aa4949]'>Create Account</button>
+                    <button type='submit' className='w-full h-[55px] rounded-sm flex justify-center items-center cursor-pointer border-[1px] border-[rgba(0,_0,_0,_0.4)] gap-4 hover:bg-gray-100'><img src="/google.png" alt="google icon" /> Create Account</button>
                 </div>
-                <button type='submit' className='w-full h-[55px] rounded-sm flex justify-center items-center bg-[#DB4444] text-white cursor-pointer hover:bg-[#aa4949]'>Create Account</button>
-                <button type='submit' className='w-full h-[55px] rounded-sm flex justify-center items-center cursor-pointer border-[1px] border-[rgba(0,_0,_0,_0.4)] flex gap-4'><img src="/google.png" alt="google icon" /> Create Account</button>
+                <span className='text-center'>Already have account? <Link href={'/login'} className='underline underline-offset-8 font-medium ml-2 hover:font-bold'>Log in</Link></span>
             </div>
         </form>
     )
