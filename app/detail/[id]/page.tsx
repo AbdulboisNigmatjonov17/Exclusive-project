@@ -16,7 +16,7 @@ export default function DetailPage() {
     }
   }, [params]);
 
-  const card = CardsData.find((item) => Number(item.id) === Number(param));
+  // const card = CardsData.find((item) => Number(item.id) === Number(param));
 
   return (
     <>
