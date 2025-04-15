@@ -110,8 +110,6 @@ export default function FlashSales() {
                         </div>
                     </div>
                 </div>
-
-                {/* Prev / Next Button */}
                 <div className="flex gap-2">
                     <button
                         className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 cursor-pointer"
@@ -126,10 +124,7 @@ export default function FlashSales() {
                         <ArrowForward fontSize={'large'} />
                     </button>
                 </div>
-
             </div>
-
-            {/* Flicking Slider */}
             <Flicking
                 ref={flickingRef}
                 circular={true}
