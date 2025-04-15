@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 import { db } from '@/firebase'
-import { collection, addDoc, doc, getDoc, setDoc } from "firebase/firestore"
+import { doc, getDoc, setDoc } from "firebase/firestore"
 import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid';
 
