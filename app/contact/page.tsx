@@ -1,7 +1,9 @@
-import React from 'react'
+import Contactt from "../../components/Contact/Contact"
 
 export default function Contact() {
   return (
-    <div>Contact</div>
+    <div>
+      <Contactt />
+    </div>
   )
 }

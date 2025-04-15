@@ -1,7 +1,9 @@
-import React from 'react'
+import Shoop from '../../components/shoop/shop'
 
-export default function Cart() {
+export default function page() {
   return (
-    <div></div>
+    <div>
+      <Shoop />
+    </div>
   )
 }
