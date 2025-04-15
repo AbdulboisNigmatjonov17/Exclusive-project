@@ -5,10 +5,11 @@ import { removeFromCart, setCart, updateQuantity } from "@/features/CartSlice";
 import { CardsData } from "@/helpers/CardsData";
 import Link from "next/link";
 import Image from "next/image";
+import { RootState } from "@/redux/store";  // Agar sizda store to'liq tiplashgan bo'lsa
 
 export default function Cart() {
   const [coupon, setCoupon] = useState("");
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
