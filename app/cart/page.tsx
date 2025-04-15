@@ -7,6 +7,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { RootState } from "@/redux/store";  // Agar sizda store to'liq tiplashgan bo'lsa
 
+interface CartItem {
+  id: number;
+  title: string;
+  price: { main: number };
+  quantity: number;
+  images: { main: string }
+}
+
 export default function Cart() {
   const [coupon, setCoupon] = useState("");
   const cart = useSelector((state: RootState) => state.cart.cart);
@@ -29,7 +37,7 @@ export default function Cart() {
   }, [dispatch]);
 
   const filteredCart = useMemo(() => {
-    return cart.reduce((acc: Array<{ id: number; title: string; price: { main: number }; quantity: number }>, item) => {
+    return cart.reduce((acc: Array<{ id: number; title: string; price: { main: number }; quantity: number }>, item: { id: number; quantity: number }) => {
       const product = CardsData.find((p) => p.id === item.id);
       if (product) {
         acc.push({ ...product, quantity: item.quantity });
@@ -38,18 +46,18 @@ export default function Cart() {
     }, []);
   }, [cart]);
 
-  const handleRemoveFromCart = (productId) => {
+  const handleRemoveFromCart = (productId: number) => {
     dispatch(removeFromCart(productId));
   };
 
-  const handleQuantityChange = (productId, newQty) => {
-    const current = cart.find((item) => item.id === productId);
+  const handleQuantityChange = (productId: number, newQty: number) => {
+    const current = cart.find((item: CartItem) => item.id === productId);
     const amount = Number(newQty) - current.quantity;
     dispatch(updateQuantity({ id: productId, amount }));
   };
 
   const totalPrice = filteredCart.reduce(
-    (sum, item) => sum + item.price.main * item.quantity,
+    (sum: number, item: CartItem) => sum + item.price.main * item.quantity,
     0
   );
 
@@ -80,7 +88,7 @@ export default function Cart() {
                 </tr>
               </thead>
               <tbody>
-                {filteredCart.map((item) => (
+                {filteredCart.map((item: CartItem) => (
                   <tr key={item.id} className="border-t border-gray-200">
                     <td className="py-4 px-4 flex items-center gap-4">
                       <Image
@@ -97,7 +105,7 @@ export default function Cart() {
                       <select
                         value={item.quantity}
                         onChange={(e) =>
-                          handleQuantityChange(item.id, e.target.value)
+                          handleQuantityChange(item.id, Number(e.target.value))
                         }
                         className="border px-2 py-1 rounded"
                       >
