@@ -12,7 +12,7 @@ export default function RelatedItem() {
         setRandomCards(shuffled.slice(0, 4));
     }, []);
     return (
-        <div className='my-10'>
+        <div className='my-20'>
             <Title content='Related Item' title='' />
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                 {randomCards.map((item) => (

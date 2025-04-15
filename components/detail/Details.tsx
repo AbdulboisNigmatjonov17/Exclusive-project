@@ -7,8 +7,15 @@ import {
 } from '@mui/icons-material';
 import { Button, ButtonGroup } from '@mui/material';
 import StarRating from '../star/Star';
+import { useDispatch } from 'react-redux';
+import { addToCart } from "@/features/CartSlice";
+import { CardsData } from '@/helpers/CardsData';
+import { useParams } from 'next/navigation';
 
 const GamepadProduct = () => {
+    const params = useParams();
+    const dispatch = useDispatch();
+
     const sizes = ['XS', 'S', 'M', 'L', 'XL'];
     const colors = [
         { name: 'Blue', value: '#3b82f6' },
@@ -16,6 +23,17 @@ const GamepadProduct = () => {
         { name: 'Green', value: '#10b981' },
         { name: 'Yellow', value: '#f59e0b' }
     ];
+
+    const card = CardsData.find((item) => Number(item.id) === Number(params?.id));
+
+    const handleAddToCart = () => {
+        if (!card) return;
+        dispatch(addToCart({ id: card.id }));
+    };
+
+    if (!card) {
+        return <div>Product not found</div>;
+    }
 
     return (
         <div className="max-w-[400px] w-full max-h-[600px] h-full mx-auto p-6 bg-white rounded-lg">
@@ -97,6 +115,7 @@ const GamepadProduct = () => {
                         color="primary"
                         fullWidth
                         sx={{ py: 1.5 }}
+                        onClick={handleAddToCart}
                     >
                         Add to Cart
                     </Button>
