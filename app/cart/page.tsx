@@ -29,7 +29,7 @@ export default function Cart() {
   }, [dispatch]);
 
   const filteredCart = useMemo(() => {
-    return cart.reduce((acc, item) => {
+    return cart.reduce((acc: Array<{ id: number; title: string; price: { main: number }; quantity: number }>, item) => {
       const product = CardsData.find((p) => p.id === item.id);
       if (product) {
         acc.push({ ...product, quantity: item.quantity });
