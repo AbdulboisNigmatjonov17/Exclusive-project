@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -181,14 +180,4 @@ export default function Cart() {
       )}
     </section>
   );
-=======
-import Shoop from '../../components/shoop/shop'
-
-export default function page() {
-  return (
-    <div>
-      <Shoop />
-    </div>
-  )
->>>>>>> 4c038c189111cf75ffbe41eb379886e30778c782
 }
