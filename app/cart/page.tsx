@@ -56,7 +56,7 @@ export default function Cart() {
     <section className="md:max-w-[1200px] w-full mx-auto lg:pb-0 pb-10">
       {filteredCart.length === 0 ? (
         <div className="text-center py-10">
-          <p>Savat bo'sh</p>
+          <p>Savat bosh</p>
         </div>
       ) : (
         <div className="max-w-6xl mx-auto px-4 py-10">
