@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌟 Exclusive
 
-## Getting Started
+**Exclusive** — bu zamonaviy, minimalist dizaynga ega e-commerce ilova bo‘lib, foydalanuvchilarga mahsulotlarni ko‘rish, filtering, like va cart’ga qo‘shish imkoniyatini beradi. Loyiha ReactJS, Context API va Tailwind CSS yordamida tuzilgan.
 
-First, run the development server:
+---
+
+## 🔗 Live Preview
+
+> https://exclusive-project.vercel.app/
+
+---
+
+## 📦 Texnologiyalar
+
+- ⚡ **Next.js** — server-side rendering va routing uchun React framework  
+- ⚛️ **React 19** — UI yaratish uchun asosiy kutubxona  
+- 🎨 **MUI (Material UI)** — zamonaviy UI componentlar kutubxonasi va icons uchun
+- 🔁 **Redux Toolkit** — soddalashtirilgan state management  
+- 🔃 **React Redux** — Redux'ni React bilan ulash uchun  
+- 🔥 **Firebase** — ma'lumotlar bazasi va database uchun  
+- 🎠 **React Multi Carousel** — mahsulotlar carousel slayderi uchun  
+- 🎞️ **Flicking (egjs)** — interaktiv slayderlar va carousel’lar uchun  
+- 🆔 **UUID** — noyob ID generatsiya qilish uchun  
+
+---
+
+## 📁 Loyiha Strukturasi
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+exclusive/
+├── public/
+├── src/
+│   ├── assets/           # Logotip va boshqa media fayllar
+│   ├── components/       # UI componentlar (Navbar, Card, Buttons)
+│   ├── context/          # Context API (ProductContext)
+│   ├── data/             # Mahsulotlar haqida data
+│   ├── pages/            # Sahifalar (Home, LikePage, NotFound)
+│   ├── App.jsx           # Routing va layout
+│   └── main.jsx          # App entry point
+├── index.html
+├── package.json
+└── README.md
+
+---
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Xususiyatlar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-✅ Mahsulotlar ro‘yxatini ko‘rish
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-❤️ Like tugmasi orqali yoqqan mahsulotlarni saqlash
 
-## Learn More
+-🛒 Mahsulotni savatchaga qo‘shish (Add to Cart)
 
-To learn more about Next.js, take a look at the following resources:
+-❌ 404 sahifasi mavjud
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🖥️ O‘rnatish (Localda ishlatish)
 
-## Deploy on Vercel
+1. Loyihani klonlash:
+```bash
+git clone https://github.com/sen-user/exclusive.git
+```
+2. Loyihaga kirish:
+```bash
+cd exclusive
+```
+3. Paketlarni o‘rnatish:
+```bash
+npm install
+```
+4. Lokal serverni ishga tushurish:
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧠 Muallif
+
+- **Ism:** CostaRico 😎
+- **Status:** Frontend Developer in Progress 🚀 
