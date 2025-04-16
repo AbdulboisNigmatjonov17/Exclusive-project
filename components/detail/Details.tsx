@@ -11,6 +11,18 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from "@/features/CartSlice";
 import { CardsData } from '@/helpers/CardsData';
 import { useParams } from 'next/navigation';
+import { addToLike } from '@/features/WishSlice';
+
+type CartItem = {
+    id: number;
+    title: string;
+    price: {
+        main: number;
+        disc?: boolean;
+        disc_percent?: number;
+    };
+    image?: string;
+};
 
 const GamepadProduct = () => {
     const params = useParams();
@@ -34,6 +46,19 @@ const GamepadProduct = () => {
     if (!card) {
         return <div>Product not found</div>;
     }
+    const handleAddToLike = (card: CartItem) => {
+        if (!card) return;
+        dispatch(addToLike({
+            id: card.id,
+            title: card.title,
+            price: {
+                main: card.price.main,
+                disc: card.price.disc,
+                disc_percent: card.price.disc_percent
+            },
+            image: card.image
+        }));
+    };
 
     return (
         <div className="max-w-[400px] w-full max-h-[600px] h-full mx-auto p-6 bg-white rounded-lg">
@@ -124,6 +149,7 @@ const GamepadProduct = () => {
                         color="primary"
                         fullWidth
                         sx={{ py: 1.5 }}
+                        onClick={() => handleAddToLike(card)}
                     >
                         Wishlist
                     </Button>

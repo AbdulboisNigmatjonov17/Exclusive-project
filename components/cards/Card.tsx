@@ -4,6 +4,9 @@ import { FavoriteBorder, VisibilityOutlined } from "@mui/icons-material";
 import StarRating from "../star/Star";
 import { useState } from "react";
 import Link from "next/link";
+import { addToLike } from '@/features/WishSlice';
+import { useDispatch } from 'react-redux';
+import { addToCart } from "@/features/CartSlice";
 
 interface CardProps {
     id: number;
@@ -26,12 +29,32 @@ interface CardProps {
     };
     about?: string;
 }
+
 export default function Card({ card }: { card: CardProps }) {
     const [show, setShow] = useState(false);
+    const dispatch = useDispatch();
 
+    const handleAddToLike = () => {
+        if (!card) return;
+        dispatch(addToLike({
+            id: card.id,
+            title: card.title,
+            price: {
+                main: card.price.main,
+                disc: card.price.disc,
+                disc_percent: card.price.disc_percent
+            },
+            image: card.images.main
+        }));
+    };
+
+    const handleAddToCart = () => {
+        if (!card) return;
+        dispatch(addToCart({ id: card.id }));
+    };
     return (
         <div key={card.id} className="w-[270px] h-[350px]">
-            <Link href={`/detail/${card.id}`}
+            <div
                 className={`h-[250px] bg-center p-3 rounded-sm flex items-start justify-between relative bg-no-repeat bg-[rgba(245,_245,_245,_1)] transition delay-150 duration-300 ease-in-out ${card.id === 1 ? "bg-contain hover:bg-size-[auto_300px]" : "hover:bg-size-[auto_200px] "}`}
                 style={{
                     backgroundImage: `url(${card.images.main ? card.images.main : "/default-product-img.jpg"})`
@@ -45,21 +68,21 @@ export default function Card({ card }: { card: CardProps }) {
                     </div>
                 )}
                 <div className="w-full flex flex-col items-end">
-                    <div className="w-[35px] h-[35px] flex items-center justify-center bg-white rounded-full cursor-pointer">
+                    <button onClick={handleAddToLike} className="w-[35px] h-[35px] flex items-center justify-center bg-white rounded-full cursor-pointer">
                         <FavoriteBorder />
-                    </div>
-                    <div className="w-[35px] h-[35px] flex items-center justify-center bg-white mt-2 rounded-full cursor-pointer">
+                    </button>
+                    <Link href={`/detail/${card.id}`} className="w-[35px] h-[35px] flex items-center justify-center bg-white mt-2 rounded-full cursor-pointer">
                         <VisibilityOutlined />
-                    </div>
+                    </Link>
                 </div>
                 <button
-                    onClick={() => alert(`${card.id} number of button has clicked`)}
+                    onClick={handleAddToCart}
                     className={`cursor-pointer absolute bottom-0 left-0 w-full flex justify-center py-2 bg-black text-white rounded-sm transition duration-300 ease-in-out ${show ? "opacity-100" : "opacity-0"
                         }`}
                 >
                     Add to Cart
                 </button>
-            </Link>
+            </div>
             <div className="mt-4">
                 <h3 className="font-medium">{card.title}</h3>
                 {card.price.disc ?
