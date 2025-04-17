@@ -5,7 +5,7 @@ export default function Cart() {
   return (
     <div className='Container pt-20'>
       <div className='flex items-center gap-3'>
-        <Link href={"/"} className='font-normal text-sm leading-5 text-[rgba(0,0,0,0.5)]'>Home</Link>
+        <Link href={"/"} className='font-normal text-sm leading-5 text-[rgba(0,0,0,0.56543`)]'>Home</Link>
         <span className='text-[14px] '>/</span>
         <h1 className='font-normal text-[14px] leading-5 text-[rgba(0,0,0,1)]'>Cart</h1>
       </div>

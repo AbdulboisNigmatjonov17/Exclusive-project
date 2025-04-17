@@ -1,7 +1,9 @@
-import React from 'react'
+import Checkoutt from "@/components/checkout/checkout"
 
 export default function Checkout() {
   return (
-    <div>Checkout</div>
+    <div>
+      <Checkoutt />
+    </div>
   )
 }
