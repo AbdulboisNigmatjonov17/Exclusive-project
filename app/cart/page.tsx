@@ -5,7 +5,7 @@ import { removeFromCart, setCart, updateQuantity } from "@/features/CartSlice";
 import { CardsData } from "@/helpers/CardsData";
 import Link from "next/link";
 import Image from "next/image";
-import { RootState } from "@/redux/store";  // Agar sizda store to'liq tiplashgan bo'lsa
+import { RootState } from "@/redux/store"; 
 
 interface CartItem {
   id: number;
@@ -178,8 +178,8 @@ export default function Cart() {
                 <span>Total:</span>
                 <span>${totalPrice.toFixed(2)}</span>
               </div>
-              <Link href="/">
-                <button className="mt-4 w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">
+              <Link href="/checkout">
+                <button className="cursor-pointer mt-4 w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">
                   Proceed to Checkout
                 </button>
               </Link>

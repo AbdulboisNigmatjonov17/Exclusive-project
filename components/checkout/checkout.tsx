@@ -1,9 +1,47 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import Foto from "../../public/ps5.png";
 import Bank from "./Bank.svg";
+import { useEffect, useState } from "react";
+import { CardsData } from "@/helpers/CardsData";
+
+interface CartItem {
+  id: number;
+  title: string;
+  price: { main: number };
+  quantity: number;
+  images: { main: string };
+}
 
 export default function Checkout() {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [subtotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const cartData = localStorage.getItem("cart");
+      if (cartData) {
+        const parsedCart = JSON.parse(cartData);
+
+        const itemsWithDetails = parsedCart.map((item: { id: number; quantity: number }) => {
+          const product = CardsData.find((p) => p.id === item.id);
+          return product ? { ...product, quantity: item.quantity } : null;
+        }).filter(Boolean);
+
+        setCartItems(itemsWithDetails);
+
+        const calculatedSubtotal = itemsWithDetails.reduce(
+          (sum: number, item: CartItem) => sum + item.price.main * item.quantity,
+          0
+        );
+
+        setSubtotal(calculatedSubtotal);
+        setTotal(calculatedSubtotal);
+      }
+    }
+  }, []);
+
   return (
     <div className="Container pt-[80px] pb-[140px]">
       <div className="flex items-center gap-3">
@@ -14,8 +52,29 @@ export default function Checkout() {
           Home
         </Link>
         <span className="text-[14px]">/</span>
-        <h1 className="font-normal text-[14px] leading-5 text-[rgba(0,0,0,1)]">
+        <Link
+          href="/"
+          className="font-normal text-sm leading-5 text-[rgba(0,0,0,0.5)]"
+        >
           My Account
+        </Link>
+        <span className="text-[14px]">/</span>
+        <Link
+          href="/"
+          className="font-normal text-sm leading-5 text-[rgba(0,0,0,0.5)]"
+        >
+          Product
+        </Link>
+        <span className="text-[14px]">/</span>
+        <Link
+          href="/"
+          className="font-normal text-sm leading-5 text-[rgba(0,0,0,0.5)]"
+        >
+          View Cart
+        </Link>
+        <span className="text-[14px]">/</span>
+        <h1 className="font-normal text-[14px] leading-5 text-[rgba(0,0,0,1)]">
+          CheckOut
         </h1>
       </div>
       <div className="flex items-start justify-between mt-20 gap-12">
@@ -84,13 +143,43 @@ export default function Checkout() {
           </div>
         </div>
         <div className="flex flex-col mt-28">
-          <div className="flex items-center gap-6">
-            <Image src={Foto} alt="Foto" width={48} height={48} />
-            <div className="flex items-center justify-between w-[300px]">
-              <span>LCD Monitor</span>
-              <span>$650</span>
+          <div className="w-full grid grid-cols-1 gap-5">
+            {cartItems.map((item) => (
+              <div key={item.id} className="w-full flex items-center justify-between gap-6">
+                <div className="flex  items-center gap-5">
+                  <Image
+                    src={item.images.main}
+                    alt={item.title}
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                  />
+                  <span>{item.title}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>${item.price.main} × {item.quantity}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-5 border-t mt-8 pt-4">
+            <div className="flex justify-between mb-2">
+              <span>Subtotal:</span>
+              <span>${subtotal.toFixed(2)}</span>
+            </div>
+            <hr />
+            <div className="flex justify-between mb-2">
+              <span>Shipping:</span>
+              <span>Free</span>
+            </div>
+            <hr />
+            <div className="flex justify-between font-bold text-lg">
+              <span>Total:</span>
+              <span>${total.toFixed(2)}</span>
             </div>
           </div>
+
           <div className="flex items-center mt-8">
             <input
               type="radio"
