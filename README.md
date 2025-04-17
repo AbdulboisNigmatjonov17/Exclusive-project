@@ -80,5 +80,5 @@ npm run dev
 
 ## 🧠 Muallif
 
-- **Ism:** CostaRico 😎
+- **Ism:** <a href="https://github.com/AbdulboisNigmatjonov17">Abdulbois</a> && <a href="https://github.com/nazarovvv-o1">Elbek</a> 😎
 - **Status:** Frontend Developer in Progress 🚀 
